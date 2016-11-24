@@ -1,52 +1,7 @@
-<input type="checkbox" class="chkbox" placeholder="1">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
-<input type="checkbox" class="chkbox">
+<?php
+
+$i = 1;
+while ($i <= 200) {
+	echo '<label><input type="checkbox" class="ace chkbox"><span class="lbl">&nbsp;'.$i.'&nbsp;</span></label>';
+	$i++;
+}

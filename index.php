@@ -9,7 +9,7 @@ if (!isset($_SESSION['user']['id']) && !isset($_SESSION['admin']['id'])) {
 } else if(isset($_SESSION['admin']['id'])) {
 	include 'template/admin_header.php';
 
-	
+	echo phpversion();
 
 	include 'template/admin_footer.php';
 } else {

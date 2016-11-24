@@ -66,7 +66,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Setoran </label>
 		<div class="col-sm-9">
-			<input id="tanggal" name="tanggal_setoran" type="text">
+			<input class="tanggal" name="tanggal_setoran" type="text">
 			<div class="fa fa-calendar"></div>
 		</div>
 	</div>

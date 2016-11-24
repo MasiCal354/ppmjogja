@@ -165,6 +165,20 @@ $page = $url2[0];
 						</a>
 						<b class="arrow"></b>
 					</li>
+					<li id="jurnal" class="">
+						<a href="jurnal">
+							<i class="menu-icon fa fa-caret-right"></i>
+							Jurnal
+						</a>
+						<b class="arrow"></b>
+					</li>
+					<li id="presensi" class="">
+						<a href="presensi">
+							<i class="menu-icon fa fa-caret-right"></i>
+							Presensi
+						</a>
+						<b class="arrow"></b>
+					</li>
 				</ul>
 			</li>
 		</ul><!-- /.nav-list -->

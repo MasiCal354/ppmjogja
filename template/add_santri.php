@@ -43,7 +43,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Lahir </label>
 		<div class="col-sm-9">
-			<input id="tanggal" name="tanggal_lahir" type="text">
+			<input class="tanggal" name="tanggal_lahir" type="text">
 			<div class="fa fa-calendar"></div>
 		</div>
 	</div>

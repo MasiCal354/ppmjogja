@@ -41,7 +41,7 @@
 <script type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
 <script type="text/javascript">
 	$(function () {
-		$("#tanggal").datepicker({dateFormat: "dd/mm/yy"});
+		$(".tanggal").datepicker({dateFormat: "dd/mm/yy"});
 	});
 </script>
 <script type="text/javascript" src="assets/js/jquery.maskedinput.min.js"></script>
