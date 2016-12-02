@@ -11,11 +11,13 @@ $page = $url2[0];
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+#heatmapContainerWrapper { width:100%; height:100%; position:absolute; }
+#heatmapContainer { width:100%; height:100%;}
+</style>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 	<title><?php echo $title; ?></title>
-<!-- 	<script type="text/javascript" scr="assets/js/jquery-1.10.2.js"></script>
-	<script type="text/javascript" scr="assets/js/jquery-ui.min.js"></script> -->
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/jquery-ui.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
@@ -25,7 +27,64 @@ $page = $url2[0];
 	<link rel="stylesheet" type="text/css" href="assets/css/ace-rtl.min.css">
 	<script type="text/javascript" scr="assets/js/ace-extra.min.js"></script>
 </head>
+	
+    <script src="assets/js/heatmap.js"></script>
+    <script>
+	var dragon=false; var heatmap; var heatmapContainer;
+	function uniKeyCode(event) {
+		var key = event.keyCode;
+		if(key == 72 && dragon==false){dragon=true; enableHeatmap(); }
+		else if(key==72 && dragon==true){
+			dragon=false;
+			disableHeatmap();
+		}
+	}
+
+	function enableHeatmap() {
+        // create a heatmap instanc
+        heatmap = h337.create({
+          container: document.getElementById('heatmapContainer'),
+          maxOpacity: .9,
+		  minOpacity: .0,
+          radius: 30,
+          blur: 1,
+          gradient: {0.4: "rgb(0,0,255)", 0.6: "rgb(0,255,0)", 0.8: "yellow", 1: "rgb(255,0,0)"}
+        });
+        heatmapContainer = document.getElementById('heatmapContainer');
+
+        heatmapContainer.onmousemove = function(e) {
+          // we need preventDefault for the touchmove
+          e.preventDefault();
+          var x = e.layerX;
+          var y = e.layerY;
+          if (e.touches) {
+            x = e.touches[0].pageX;
+            y = e.touches[0].pageY;
+          }
+          
+          heatmap.addData({ x: x, y: y, value: 15 });
+
+        };
+	}
+	
+	function disableHeatmap(){
+		//find corresponding canvas element
+		var canvas = heatmap._renderer.canvas;
+		//remove the canvas from DOM
+		$(canvas).remove();
+		//than unset the variable
+		heatmap = undefined;
+		//or
+		heatmap = null;
+		heatmapContainer.onmousemove = undefined;
+	}
+	
+	document.onkeydown = uniKeyCode;
+    </script>
 <body class="no-skin">
+	<div id="heatmapContainerWrapper">
+      <div id="heatmapContainer">
+	  
 <div id="navbar" class="navbar navbar-default ace-save-state">
 	<div class="navbar-container ace-save-state" id="navbar-container">
 		<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
