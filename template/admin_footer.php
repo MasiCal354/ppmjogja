@@ -56,14 +56,14 @@
 <script type="text/javascript" src="assets/js/ace.min.js"></script>
 <script>
   	function getNIS(name){
-  		 $.getJSON('../get_nis.php?name='+name, function(data) {
+  		 $.getJSON('inc/get_nis.php?name='+name, function(data) {
           console.log(data);
           $("#name-field").val(data);
         });
   	}
   	$(function() {
     	$("#form-field-1").autocomplete({
-      	source: '../search.php',
+      	source: 'inc/search.php',
       	change: function(event, ui) {
         		console.log("this.value: " + this.value);
         		getNIS(this.value);
