@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2016 at 04:33 AM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Generation Time: Dec 02, 2016 at 07:42 AM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -67,6 +67,7 @@ INSERT INTO `data_santri` (`nis`, `nama`, `panggilan`, `jenis_kelamin`, `tempat_
 ('PA1501', 'Achmad Thesa Widhaswara', 'Thesa', 'L', 'Nganjuk', '1996-02-22', '0857-3592-0579', 'Jl. K.H. Mustaim Romli RT/RW 02/02 Desa Bangsri kec. Kertosono kab. Nganjuk', 'I04000', 'A'),
 ('PA1502', 'Amar Wicaksono', 'Amar', 'L', 'CIlacap', '1997-06-06', '0857-2668-8292', 'Cilacap', 'A01000', 'O'),
 ('PA1517', 'Faisal Malik Widya Prasetya', 'iCal', 'L', 'Serang', '1996-05-05', '0822-9967-0740', 'Pejaten Mas Blok A/15 Kel. Pejaten, Kec. Kramatwatu, Kab. Serang, Prov. Banten', 'U04000', 'O'),
+('PA1519', 'Unggul Prasojo', 'Pras', 'L', 'Palu', '1996-12-26', '0823-3226-7595', 'Ngajuk', 'I06000', 'A'),
 ('PA1599', 'Fengkie Junis', 'Fengkie', 'L', 'Palu', '1995-03-01', '0871-6517-7811', 'Palu', 'U04000', 'A');
 
 -- --------------------------------------------------------
@@ -436,6 +437,45 @@ INSERT INTO `kampus` (`kode_kampus`, `kampus`) VALUES
 ('U20', 'UNIVERSITAS TERBUKA UPBJJ YOGYAKARTA '),
 ('U21', 'UNIVERSITAS WIDYA MATARAM'),
 ('U22', 'UPN VETERAN YOGYAKARTA');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kelas`
+--
+
+CREATE TABLE `kelas` (
+  `kode_kelas` char(2) NOT NULL,
+  `nama_kelas` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kelas`
+--
+
+INSERT INTO `kelas` (`kode_kelas`, `nama_kelas`) VALUES
+('Cp', 'Cepatan'),
+('Lb', 'Lambatan'),
+('PB', 'Pegon Bacaan'),
+('PS', 'Pra Saringan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kelas_santri`
+--
+
+CREATE TABLE `kelas_santri` (
+  `nis` char(6) NOT NULL,
+  `kode_kelas` char(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kelas_santri`
+--
+
+INSERT INTO `kelas_santri` (`nis`, `kode_kelas`) VALUES
+('PA1517', 'Lb');
 
 -- --------------------------------------------------------
 
@@ -6999,6 +7039,17 @@ INSERT INTO `surat` (`suratid`, `namasurat`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `unit_santri`
+--
+
+CREATE TABLE `unit_santri` (
+  `nis` char(6) NOT NULL,
+  `unit` enum('A','B','C','D','E','L1','L2','L3','LK') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -7046,6 +7097,19 @@ ALTER TABLE `kampus`
   ADD PRIMARY KEY (`kode_kampus`);
 
 --
+-- Indexes for table `kelas`
+--
+ALTER TABLE `kelas`
+  ADD PRIMARY KEY (`kode_kelas`);
+
+--
+-- Indexes for table `kelas_santri`
+--
+ALTER TABLE `kelas_santri`
+  ADD PRIMARY KEY (`nis`),
+  ADD KEY `kode_kelas` (`kode_kelas`);
+
+--
 -- Indexes for table `kuliah`
 --
 ALTER TABLE `kuliah`
@@ -7070,6 +7134,12 @@ ALTER TABLE `skor_hapalan`
 --
 ALTER TABLE `surat`
   ADD PRIMARY KEY (`suratid`);
+
+--
+-- Indexes for table `unit_santri`
+--
+ALTER TABLE `unit_santri`
+  ADD PRIMARY KEY (`nis`);
 
 --
 -- Indexes for table `users`
@@ -7108,6 +7178,13 @@ ALTER TABLE `hapalan`
   ADD CONSTRAINT `hapalan_ibfk_1` FOREIGN KEY (`nis`) REFERENCES `data_santri` (`nis`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hapalan_ibfk_2` FOREIGN KEY (`qid`) REFERENCES `quran` (`qid`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hapalan_ibfk_3` FOREIGN KEY (`skor`) REFERENCES `skor_hapalan` (`skor`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `kelas_santri`
+--
+ALTER TABLE `kelas_santri`
+  ADD CONSTRAINT `kelas_santri_ibfk_1` FOREIGN KEY (`nis`) REFERENCES `data_santri` (`nis`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `kelas_santri_ibfk_2` FOREIGN KEY (`kode_kelas`) REFERENCES `kelas` (`kode_kelas`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `kuliah`
