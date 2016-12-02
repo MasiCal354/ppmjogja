@@ -2,15 +2,8 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Santri </label>
 		<div class="col-sm-9">
-		<select id="form-field-1" name="nis">
-			<option value="">Pilih Santri:</option>
-			<?php
-				while ($row = $santri->fetch_assoc()) {
-					$nis = $row['nis'];
-					echo '<option value="'.$nis.'">'.$nis.' '.$row['nama'].'</option>';
-				}
-			?>
-		</select>
+		<input type="text" id="form-field-1" name="name" onchange="getNIS('carcass');"/>
+		<input type="hidden" id="name-field" name="nis" value=""/>
 		</div>
 	</div>
 
